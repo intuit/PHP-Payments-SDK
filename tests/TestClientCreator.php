@@ -1,0 +1,17 @@
+<?php
+declare(strict_types=1);
+
+namespace QuickBooksOnline\Tests;
+
+use QuickBooksOnline\Payments\PaymentClient;
+
+final class TestClientCreator
+{
+  public static function createInstance()
+  {
+    $client = new PaymentClient();
+    $client->setAccessToken("eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..-7w7RlW2BWnYGFSVhtu9QQ.3XfGAgsxUBV5u1Eqp__Pl3cAmf1VuOBE5uJ6fuE5-giiR7ZVvT5_olayhcFe189QZyapGQJ_iorWbTHquDgMpM4rOBVCjHZ2cENVUG-MDGSs3kYxw0fgZtJVmjZXv-s8hFl39UFo9mbG77UjlO62EWMGPotCVaFoOhBhJhBb0szoXjTB4xoNKbgwcF_tyDUNefoPKJWav8kMA93dIzMRk-mpTrIGQ_wknFDtay_FaK7_Ead85ErLC5algpPovLi1h7NxWG9dRLjJGE3eYkt9LTt2oyiPTEhG1w-1tWLexjIyjo7zWo2fQzag-4K7wo9jX1vHZSk0XzTd0BtVL0OZLtAVuAOA263pOogYdywjN2lTnHvRXoFcZvN13gQSz7vZMsSCDGbJW14oNiJNJ_EMnZBKj45aelGcsDUMVM9eRvd-IlU3ia7bf7nOH5pYQMsaaF9vulowP-P_B3JbNh7nemVigB8wZ1fHmTVvT18k67xVJbmV856aw1ZeTwVHB2BtI7wYA5Dgq07hHIj_Iq6mQU9hdu5d75SRFDvKA408Qv4MPcHEQmGkk28A0Uid8OG9Cgk3Kf3AzurCbIwgAlMEfmGHGFZgLB-6EpAIoZJr47js6PlaNIwF6RmiGqZoub2pMrGBoE8OoerKB4cxXRrkAm0oC8PDNhBjKC9UMORV1pF9hVF26mBcbWQXp17D6vW4A4E19YyQIo2xEooupP2rrA.UmpcLaEFRyzwXQmEHeNPCA")
+     ->setEnviornment("sandbox");
+    return $client;
+  }
+}
