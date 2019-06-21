@@ -1,4 +1,16 @@
 {
+  "name": "quickbooks/payments-sdk",
+  "description": "The Official PHP SDK for QuickBooks Online Payments API",
+  "type": "library",
+  "keywords": ["api", "http", "rest", "quickbooks payments", "smallbusiness"],
+  "license": "Apache-2.0",
+  "homepage": "http://developer.intuit.com",
+  "authors": [
+   {
+       "name": "hlu2",
+       "email": "Hao_Lu@intuit.com"
+   }
+  ],
   "autoload": {
     "psr-4": {
       "QuickBooksOnline\\Payments\\": "src/"
