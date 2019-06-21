@@ -20,7 +20,7 @@ If you have not used with QuickBooks Online Payments API, please go to our docs 
 You can install the bindings via [Composer](http://getcomposer.org/). Run the following command:
 
 ```php
-   composer require quickbooks/payments-sdk
+composer require quickbooks/payments-sdk
 ```
 
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
@@ -105,7 +105,43 @@ if($response->failed()){
 
 ```
 
-If the request is made successfully, the 
+If the request is made successfully, then the `getBody()` function will return the casted object. The above example will return the following `$charge` object as `$response->getBody()`:
+```php
+class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
+  public $status =>
+  string(8) "CAPTURED"
+  public $amount =>
+  string(5) "10.55"
+  public $currency =>
+  string(3) "USD"
+  public $token =>
+  NULL
+  public $card =>
+  class QuickBooksOnline\Payments\Modules\Card#12 (18) {
+    public $updated =>
+    NULL
+    public $name =>
+    string(9) "emulate=0"
+    public $number =>
+    string(16) "xxxxxxxxxxxx1111"
+    public $address =>
+    class QuickBooksOnline\Payments\Modules\Address#13 (5) {
+      public $streetAddress =>
+      string(13) "1130 Kifer Rd"
+      public $city =>
+      string(9) "Sunnyvale"
+      public $region =>
+      string(2) "CA"
+      public $country =>
+      string(2) "US"
+      public $postalCode =>
+      string(5) "94086"
+    }
+    public $commercialCardCode =>
+    NULL
+    ...
+```
+
 The $responseCharge will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
 so to get the id, use 
 
