@@ -5,7 +5,7 @@ This SDK is designed to facilitate developers using QuickBooks Online Payments A
 
  - Standard OAuth 2.0 and OpenID Connect protocols
  - Interceptors for logging and error handling
- - Standard Payments API endpoint request
+ - Standard Payments API endpoints requests/response handling
 
 If you have not used with QuickBooks Online Payments API, please go to our docs at: https://developer.intuit.com/app/developer/qbpayments/docs/get-started
 
@@ -20,7 +20,7 @@ If you have not used with QuickBooks Online Payments API, please go to our docs 
 You can install the bindings via [Composer](http://getcomposer.org/). Run the following command:
 
 ```php
-   Not known yet
+   composer require quickbooks/payments-sdk
 ```
 
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
