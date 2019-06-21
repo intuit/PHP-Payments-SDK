@@ -220,8 +220,7 @@ $response = $client->send($chargeRequest);
 You can access the data from the last API response on any object via `getLastResponse()`.
 
 ```php
-$charge = \Stripe\Charge::create(['amount' => 2000, 'currency' => 'usd', 'source' => 'tok_visa']);
-echo $charge->getLastResponse()->headers['Request-Id'];
+
 ```
 
 ### SSL / TLS compatibility issues
