@@ -105,7 +105,7 @@ if($response->failed()){
 
 ```
 
-If the request is made successfully, then the `getBody()` function will return the casted object. The above example will return the following `$charge` object as `$response->getBody()`:
+If the request is made successfully, then the `getBody()` function will return the casted object. The above example will return the following `$charge` object from `$response->getBody()`:
 ```php
 class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
   public $status =>
