@@ -26,7 +26,7 @@ You can install the bindings via [Composer](http://getcomposer.org/). Run the fo
 To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
 
 ```php
-require_once('vendor/autoload.php');
+require "vendor/autoload.php";
 ```
 
 ## Manual Installation
@@ -53,8 +53,15 @@ If you use Composer, these dependencies should be handled automatically. If you 
 Simple usage looks like:
 
 ```php
+<?php
+require "vendor/autoload.php";
+
+use QuickBooksOnline\Payments\PaymentClient;
+use QuickBooksOnline\Payments\Operations\ChargeOperations;
+
+
 $client = new PaymentClient([
-  'access_token' : "your access token",
+  'access_token' => "your access token",
   'environment' => "sandbox" //  or 'environment' => "production"
 ]);
 
@@ -82,9 +89,23 @@ $array = [
 ];
 $charge = ChargeOperations::buildFrom($array);
 $response = $client->charge($charge);
-$responseCharge = $response->getBody();
+
+if($response->failed()){
+    echo "failed";
+}else{
+  $responseCharge = $response->getBody();
+  //Get the Id of the charge request
+  $id = $responseCharge->id;
+  //Get the Status of the charge request
+  $status = $responseCharge->status;
+
+  echo "Id is " . $id . "\n";
+  echo "status is " . $status . "\n";
+}
 
 ```
+
+If the request is made successfully, the 
 The $responseCharge will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
 so to get the id, use 
 
