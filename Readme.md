@@ -91,21 +91,23 @@ $charge = ChargeOperations::buildFrom($array);
 $response = $client->charge($charge);
 
 if($response->failed()){
-    echo "failed";
+    $code = $response->getStatusCode();
+    $errorMessage = $response->getBody();
+    echo "code is $code \n";
+    echo "body is $errorMessage \n";
 }else{
-  $responseCharge = $response->getBody();
-  //Get the Id of the charge request
-  $id = $responseCharge->id;
-  //Get the Status of the charge request
-  $status = $responseCharge->status;
-
-  echo "Id is " . $id . "\n";
-  echo "status is " . $status . "\n";
+    $responseCharge = $response->getBody();
+    //Get the Id of the charge request
+    $id = $responseCharge->id;
+    //Get the Status of the charge request
+    $status = $responseCharge->status;
+    echo "Id is " . $id . "\n";
+    echo "status is " . $status . "\n";
 }
 
 ```
 
-If the request is made successfully, then the `getBody()` function will return the casted object. The above example will return the following `$charge` object from `$response->getBody()`:
+If the request is made successfully, then the `getBody()` function will return the casted object. The above example will return the following `$responseCharge` object from `$response->getBody()`:
 ```php
 class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
   public $status =>
@@ -142,12 +144,9 @@ class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
     ...
 ```
 
-The $responseCharge will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
-so to get the id, use 
+Each casted object will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
 
-```php
-$id = $responseCharge->id; 
-```
+If the request is failed due to token expired, server outrage, or invalid request body, use `$response->failed()` method to check if the request failed. 
 
 ## OAuth support
 
