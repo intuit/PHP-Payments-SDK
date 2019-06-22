@@ -146,7 +146,7 @@ class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
 
 Each casted object will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
 
-If the request is failed due to token expired, server outrage, or invalid request body, use `$response->failed()` method to check if the request failed. 
+If the request is failed due to token expired, server outrage, or invalid request body, use `$response->failed()` method to check if the request failed. Check with our [Response Interface](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) for a list of supported operations to diagnose a failed request. 
 
 ## OAuth support
 
