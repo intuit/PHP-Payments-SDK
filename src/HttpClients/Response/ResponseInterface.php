@@ -24,4 +24,5 @@ interface ResponseInterface
     public function getIntuitTid() : string;
     public function getContentType() : string;
     public function getAssociatedRequest() : RequestInterface;
+    public function getRequestId(): string;
 }

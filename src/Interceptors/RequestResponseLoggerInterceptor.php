@@ -6,7 +6,7 @@ use QuickBooksOnline\Payments\HttpClients\Request\{RequestInterface};
 use QuickBooksOnline\Payments\HttpClients\Response\{ResponseInterface};
 use QuickBooksOnline\Payments\PaymentClient;
 
-class LoggingInterceptor implements InterceptorInterface
+class RequestResponseLoggerInterceptor implements InterceptorInterface
 {
 
   /**

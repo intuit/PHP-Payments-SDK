@@ -6,7 +6,7 @@ namespace QuickBooksOnline\Tests;
 use PHPUnit\Framework\TestCase;
 use QuickBooksOnline\Payments\Operations\{CardOperations, ChargeOperations};
 use QuickBooksOnline\Payments\PaymentClient;
-use QuickBooksOnline\Payments\Interceptors\{ConsoleLoggerInterceptor, LoggingInterceptor, ExceptionOnErrorInterceptor};
+use QuickBooksOnline\Payments\Interceptors\{StackTraceLoggerInterceptor, RequestResponseLoggerInterceptor, ExceptionOnErrorInterceptor};
 
 
 final class LoggingInterceptorTest extends TestCase
@@ -36,8 +36,8 @@ final class LoggingInterceptorTest extends TestCase
     public function testLoggingToDiskWorksOrNot() : void
     {
         $client = $this->createInstance();
-        $client->addInterceptor("FileInterceptor", new LoggingInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/", 'America/Los_Angeles'));
-        $client->addInterceptor("LoggerInterceptor", new ConsoleLoggerInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/errorLog.txt"));
+        $client->addInterceptor("FileInterceptor", new RequestResponseLoggerInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/", 'America/Los_Angeles'));
+        $client->addInterceptor("LoggerInterceptor", new StackTraceLoggerInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/errorLog.txt"));
         $card = $this->createCardBody();
         $clientId = rand();
         $response = $client->createCard($card, $clientId, rand() . "abd");

@@ -9,7 +9,7 @@ use QuickBooksOnline\Payments\HttpClients\Request\{RequestInterface};
 use QuickBooksOnline\Payments\HttpClients\Response\{ResponseInterface};
 use QuickBooksOnline\Payments\PaymentClient;
 
-class ConsoleLoggerInterceptor implements InterceptorInterface, LoggerInterface
+class StackTraceLoggerInterceptor implements InterceptorInterface, LoggerInterface
 {
     const DEBUG      = 'DEBUG';
     const INFO       = 'INFO';
@@ -195,9 +195,10 @@ class ConsoleLoggerInterceptor implements InterceptorInterface, LoggerInterface
         $context = [
          'Entity' => $request->getRequestType(),
          'Url' => $request->getUrl(),
-         'intuit-tid' => $response->getIntuitTid(),
+         'Intuit-tid' => $response->getIntuitTid(),
+         'Request-Id' => $request->getRequestId()
        ];
-        $this->info("Sending Request for [" . $request->getRequestType() . "] to [" . $request->getUrl() . "]");
+        $this->info("Sending Request for [" . $request->getRequestType() . "] to [" . $request->getUrl() . "] with Request-Id: [" . $request->getRequestId() . "].");
 
         if ($response->failed()) {
             $this->error("Request failed: [" . $response->getBody() . "].", $context);

@@ -8,6 +8,7 @@ class IntuitRequest implements RequestInterface
     private $header;
     private $body;
     private $requestType;
+    private $requestId;
 
     public function __construct($type)
     {
@@ -50,11 +51,20 @@ class IntuitRequest implements RequestInterface
     {
         if (isset($header) && !empty($header) && is_array($header)) {
             $this->header = $header;
+            $this->addRequestIdFromHeader($header);
         } else {
             throw new InvalidArgumentException("invalid header for request");
         }
 
         return $this;
+    }
+
+    private function addRequestIdFromHeader($header)
+    {
+        if (strcmp($this->getRequestType(), RequestType::OAUTH) !== 0 &&
+              strcmp($this->getRequestType(), RequestType::USERINFO) !== 0) {
+            $this->setRequestId($header['Request-Id']);
+        }
     }
 
     public function getBody()
@@ -78,5 +88,15 @@ class IntuitRequest implements RequestInterface
     public function setRequestType($type)
     {
         $this->requestType = $type;
+    }
+
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+    }
+
+    public function getRequestId()
+    {
+        return $this->requestId;
     }
 }

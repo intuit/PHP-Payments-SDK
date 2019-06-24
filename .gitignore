@@ -1,6 +1,6 @@
 # Ignore Mac system files
 .DS_store
-
+.lock
 # Ignore all text files
 *.txt
 

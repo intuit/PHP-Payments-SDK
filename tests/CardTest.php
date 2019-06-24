@@ -85,7 +85,7 @@ final class CardTest extends TestCase
         $this->assertEmpty($response->getBody());
     }
 
-    public function testallallCardsOnSandbox(): void
+    public function testallCardsOnSandbox(): void
     {
         $client = $this->createInstance();
         $card = $this->createCardBody();

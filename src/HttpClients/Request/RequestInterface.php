@@ -19,4 +19,6 @@ interface RequestInterface
     public function getBody();
     public function getRequestType();
     public function setRequestType($type);
+    public function setRequestId($requestId);
+    public function getRequestId();
 }

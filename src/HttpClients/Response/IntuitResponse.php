@@ -14,6 +14,7 @@ class IntuitResponse implements ResponseInterface
     private $intuitTid;
     private $contentType;
     private $request;
+    private $requestId;
 
     public function setResponseStatus(int $statusCode)
     {
@@ -129,6 +130,7 @@ class IntuitResponse implements ResponseInterface
     public function setAssociatedRequest(RequestInterface $associatedRequest)
     {
         $this->request = $associatedRequest;
+        $this->requestId = $associatedRequest->getRequestId();
         $this->url = $associatedRequest->getUrl();
         return $this;
     }
@@ -136,5 +138,13 @@ class IntuitResponse implements ResponseInterface
     public function getAssociatedRequest() : RequestInterface
     {
         return $this->request;
+    }
+
+    public function setRequestId(string $requestId){
+        $this->requestId = $requestId;
+    }
+
+    public function getRequestId() :string {
+        return $this->requestId;
     }
 }
