@@ -164,11 +164,11 @@ Developers can use this library to handle OAuth 2.0 protocol. It supports:
 - Migrating tokens from OAuth1.0 to OAuth2 
 `createRequestToMigrateToken(string $consumerKey, string $consumerSecret, string $oauth1AccessToken, string $oauth1TokenSecret, string $scopes) : RequestInterface`
 
-In order to finish the OAuth flow, developers will need to create two objects
+In order to use OAuth 2, developers will need to create two objects
  - OAuth2Authenticator : used to create OAuth 2.0 related request
  - PaymentClient: used to send OAuth 2.0 related request
  
-The Payments SDK does not provide any parsing support for parsing the OAuth 2.0 response. Since the response for OAuth 2.0 requests are always in JSON format, a simple 'json_decode($response->getBody(), true)' will work.
+The Payments SDK does not provide any parsing support for parsing the OAuth 2.0 response. Since the response for OAuth 2.0 requests are always in JSON format, a simple `json_decode($response->getBody(), true)` will work.
 
 Example:
 ```php
@@ -209,6 +209,25 @@ if($response->failed()){
 }
 
 ```
+
+## Operations
+
+The PHP Payments SDK supports all six Payments endpoints: `BankAccounts`, `Cards`, `Charges`, `EChecks`, `Tokens`, `Transactions` that mentioned in the docs: [API Reference](https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts#create-a-bank-account-from-a-token).
+
+To construct the body for each API endpoint, developers will need to first construct the body of the request in array format, then use the `Operations`'s `buildFrom` method to convert the array to object.
+
+For example, to convert an array representation of card to a $card object, use:
+`CardOperations::buildFrom($cardarray);`
+
+All supports `operations` are availble here: [Operations](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations)
+
+Once the object is created, developers will use the `$client` corresponding functions call to send the request. The function names of all the endpoints are derived from the doc. For example To create a card, developers will use
+```php
+$client->createCard($card);
+```
+
+To check a list of available functions, refer to here: [API endpoints operations](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/PaymentClient.php)
+
 
 ## Interceptors
 
