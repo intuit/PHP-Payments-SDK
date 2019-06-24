@@ -233,18 +233,23 @@ To check a list of available functions, refer to here: [API endpoints operations
 
 ## Interceptors
 
-Interceptors are used to intercept requests and response.
+Interceptors are used to intercept requests and response. It can be used to log a request/response, creating a retry mechanism if a connection timeout, or handing token expiration cases.
 
-Developers can define their own interceptors to intercept request and response by inheriting `InterceptorInterface`.
+The default interceptors provided in this SDK are:
+ - ConsoleLoggerInterceptor: 
+     Similar to log4j, logging the request/response to a log file.
+ - LoggingInterceptor: 
+     log the complete request and response sent/received each time. Hide the OAuth 2.0 token. The ConsoleLoggerInterceptor     will log everything to one error log, however, loggingInterceptor will record each request in a file, and each response in a file.
+ - ExceptionOnErrorInterceptor: 
+     throw an exception if the request failed. 
 
-To change the request send, define your `before(RequestInterface &$request, PaymentClient $client)` method.
+Based Developers can define their own interceptors to intercept request and response by inheriting `InterceptorInterface`.
+
+- To change the request sent to the Payments API, define your `before(RequestInterface &$request, PaymentClient $client)` method.
 To change the response received, define your `after(ResponseInterface &$response, PaymentClient $client)` method. 
 To intercept the request and response, but don't alter them, define your `intercept(RequestInterface $request, ResponseInterface $response, PaymentClient $client)` method.
 
-THe default interceptors provided in this SDK are:
- - ConsoleLoggerInterceptor
- - LoggingInterceptor
- - ExceptionOnErrorInterceptor
+
 
 In order to add interceptor to the client, use:
 
