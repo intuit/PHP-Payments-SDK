@@ -151,12 +151,18 @@ If the request is failed due to token expired, server outrage, or invalid reques
 ## OAuth support
 
 Developers can use this library to handle OAuth 2.0 protocol. It supports:
-- Generating Authorization URL             `generateAuthCodeURL(string $scope, string $userDefinedState = "state") : string`
-- Getting OAuth2 Bearer Token              `createRequestToExchange(string $code) : RequestInterface'  
-- Getting User Info                        `createRequestForUserInfo(string $accessToken) : RequestInterface`
-- Refreshing OAuth2 Token                  `createRequestToRefresh(string $refreshToken) : RequestInterface`
-- Revoking OAuth2 Token                    `createRequestToRevoke(string $token)`
-- Migrating tokens from OAuth1.0 to OAuth2 `createRequestToMigrateToken(string $consumerKey, string $consumerSecret, string $oauth1AccessToken, string $oauth1TokenSecret, string $scopes) : RequestInterface`
+- Generating Authorization URL             
+`generateAuthCodeURL(string $scope, string $userDefinedState = "state") : string`
+- Getting OAuth2 Bearer Token              
+`createRequestToExchange(string $code) : RequestInterface`  
+- Getting User Info                        
+`createRequestForUserInfo(string $accessToken) : RequestInterface`
+- Refreshing OAuth2 Token                  
+`createRequestToRefresh(string $refreshToken) : RequestInterface`
+- Revoking OAuth2 Token                    
+`createRequestToRevoke(string $token)`
+- Migrating tokens from OAuth1.0 to OAuth2 
+`createRequestToMigrateToken(string $consumerKey, string $consumerSecret, string $oauth1AccessToken, string $oauth1TokenSecret, string $scopes) : RequestInterface`
 
 In order to finish the OAuth flow, developers will need to create two objects
  - OAuth2Authenticator : used to create OAuth 2.0 related request
