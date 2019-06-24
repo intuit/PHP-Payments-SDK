@@ -243,28 +243,24 @@ The default interceptors provided in this SDK are:
  - ExceptionOnErrorInterceptor: 
      throw an exception if the request failed. 
 
-Based Developers can define their own interceptors to intercept request and response by inheriting `InterceptorInterface`.
-
+Based on the need, you can define your own interceptors to intercept request and response by inheriting the  `InterceptorInterface`:
 - To change the request sent to the Payments API, define your `before(RequestInterface &$request, PaymentClient $client)` method.
-To change the response received, define your `after(ResponseInterface &$response, PaymentClient $client)` method. 
-To intercept the request and response, but don't alter them, define your `intercept(RequestInterface $request, ResponseInterface $response, PaymentClient $client)` method.
+- To change the response received, define your `after(ResponseInterface &$response, PaymentClient $client)` method. 
+- To intercept the request and response, but don't alter them, define your `intercept(RequestInterface $request, ResponseInterface $response, PaymentClient $client)` method.
 
-
-
-In order to add interceptor to the client, use:
+In order to add an interceptor to the client, use:
 
 ```php
 $client->addInterceptor("interceptorName", new InterceptorImplementation());
 ```
 
-To delete an interceptor by name, use:
+To delete an interceptor by its name, use:
 
 ```php
 $client->removeInterceptor($name);
 ```
 
 Example:
-
 To enable file storage for each acutal request and response sent by the SDK:
 ```php
 $client->addInterceptor("requestresponselogger", new LoggingInterceptor("/your/directory/to/store/files", 'America/Los_Angeles'));
@@ -276,55 +272,7 @@ $client->addInterceptor("tracelogger", new ConsoleLoggerInterceptor("/your/file/
 ```
 
 
-### Calling API endpoints.
-
-The SDK supports multiple endpoints:
-- Charge
-- Token
-- Card
-- EChecks
-- BankAccounts
-
-For each endpoint, please refer to our documentation:
-https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts
-
-Example for creating charge:
-```php
-
-$client = new PaymentClient([
-  'access_token' : ""
-  'refresh_token' : ""
-]);
-
-$array = [
-  "amount" => "10.55",
-  "currency" => "USD",
-  "card" => [
-      "name" => "emulate=0",
-      "number" => "4111111111111111",
-      "address" => [
-        "streetAddress" => "1130 Kifer Rd",
-        "city" => "Sunnyvale",
-        "region" => "CA",
-        "country" => "US",
-        "postalCode" => "94086"
-      ],
-      "expMonth" => "02",
-      "expYear" => "2020",
-      "cvc" => "123"
-  ],
-  "context" => [
-    "mobile" => "false",
-    "isEcommerce" => "true"
-  ]
-];
-$chargeBody = ChargeBuilder::buildFrom($array);
-$chargeRequest = ChargeBuilder::createChargeRequest($chargeBody, $request_id);
-
-$response = $client->send($chargeRequest);
-```
-
-### Accessing response data
+## Error Handling
 
 You can access the data from the last API response on any object via `getLastResponse()`.
 
