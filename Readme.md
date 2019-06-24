@@ -217,7 +217,9 @@ The PHP Payments SDK supports all six Payments endpoints: `BankAccounts`, `Cards
 To construct the body for each API endpoint, developers will need to first construct the body of the request in array format, then use the `Operations`'s `buildFrom` method to convert the array to object.
 
 For example, to convert an array representation of card to a $card object, use:
-`CardOperations::buildFrom($cardarray);`
+```php
+CardOperations::buildFrom($cardarray);
+```
 
 All supports `operations` are availble here: [Operations](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations)
 
