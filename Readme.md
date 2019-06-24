@@ -290,3 +290,7 @@ $client->addInterceptor("tracelogger", new StackTraceLoggerInterceptor("/your/fi
 
 By default, each `$response` object will have a `failed()` method to determine if a request is made successful. A successful request is defined by having a status code of 200/201. Any other status code will cause a `$response->failed()` method return true. If a request failed, you can use our [supported diagnose function](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) to find out more information.
 
+## Questions
+
+If you find any bugs for the SDK, or want to request for a feature, create a support ticket at https://help.developer.intuit.com/s/ or sending us a pull request. Contributions are always welcomed!
+
