@@ -50,7 +50,15 @@ If you use Composer, these dependencies should be handled automatically. If you 
 
 ## Getting Started
 
-Simple usage looks like:
+To begin using the Payments SDK, the first step will be creating a PaymentClient with the two minimum propertis, `access_token` and `environment`. The `access_token` is the OAuth 2.0 token to access the API, the `environment` is defining the base url for the API endpoint, either sandbox or production. If you don't provide these two properties, `PaymentClient` can still be created, however, it won't be able to make any Payments API call.
+
+```php
+$client = new PaymentClient([
+ 'access_token' => "your access token",
+ 'environment' => "sandbox" //  or 'environment' => "production"
+]);
+```
+Once the Payment Client is created, you can start making API calls to the Payments API endpoints. Simple usage looks like:
 
 ```php
 <?php
