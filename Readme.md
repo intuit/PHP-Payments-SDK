@@ -2,7 +2,7 @@
 QuickBooks Payments PHP SDK
 ==========================
 ![Build status](https://travis-ci.com/intuit/PHP-Payments-SDK.svg?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/quickbooks/payments-sdk/v/stable)](https://packagist.org/packages/quickbooks/payments-sdk)
+[![Latest Stable Version](https://poser.pugx.org/quickbooks/payments-sdk/v/stable)]
 
 This SDK is designed to facilitate developers using QuickBooks Online Payments API. It provides a set of methods that make it easier to work with Intuit’s Payments API. It supports the following operations:
 
