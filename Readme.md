@@ -1,6 +1,8 @@
 
 QuickBooks Payments PHP SDK
 ==========================
+![Build status](https://travis-ci.com/intuit/PHP-Payments-SDK.svg?branch=master)
+
 This SDK is designed to facilitate developers using QuickBooks Online Payments API. It provides a set of methods that make it easier to work with Intuit’s Payments API. It supports the following operations:
 
  - Standard OAuth 2.0 and OpenID Connect protocols
