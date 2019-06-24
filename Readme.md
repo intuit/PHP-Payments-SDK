@@ -158,29 +158,50 @@ Developers can use this library to handle OAuth 2.0 protocol. It supports:
 - Revoking OAuth2 Token
 - Migrating tokens from OAuth1.0 to OAuth2
 
+In order to finish the OAuth flow, developers will need to create two objects
+ - OAuth2Authenticator : used to create OAuth 2.0 related request
+ - PaymentClient: used to send OAuth 2.0 related request
+ 
+The Payments SDK does not provide any parsing support for parsing the OAuth 2.0 response. Since the response for OAuth 2.0 requests are always in JSON format, a simple 'json_decode($response->getBody(), true)' will work.
+
 Example:
 ```php
+<?php
+require "vendor/autoload.php";
 
+use QuickBooksOnline\Payments\OAuth\OAuth2Authenticator;
+use QuickBooksOnline\Payments\PaymentClient;
+
+$client = new PaymentClient();
 $oauth2Helper = OAuth2Authenticator::create([
-  'client_id' => 'L0vmMZIfwUBfv9PPM96dzMTYATnLs6TSAe5SyVkt1Z4MAsvlCU',
-  'client_secret' => '2ZZnCnnDyoZxUlVCP1D9X7khxA3zuXMyJE4cHXdq',
-  'redirect_uri' => 'https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl',
-  'environment' => 'development'
+  'client_id' => 'Your Client ID',
+  'client_secret' => 'Your Client Secret',
+  'redirect_uri' => 'The redirect URI under the app's Keys tab',
+  'environment' => 'development' // or 'environment' => 'production' 
 ]);
 
+//The scope for the token. 
 $scope = "com.intuit.quickbooks.accounting openid profile email phone address";
 
-//Generate Authorization URL Request.
 $authorizationCodeURL = $oauth2Helper->generateAuthCodeURL($scope);
+//https://appcenter.intuit.com/connect/oauth2?client_id=L0vmMZIfwUBfv9PPM96dzMTYATnLs6TSAe5SyVkt1Z4MAsvlCU&scope=com.intuit.quickbooks.accounting%20openid%20profile%20email%20phone%20address&redirect_uri=https%3A%2F%2Fdeveloper.intuit.com%2Fv2%2FOAuth2Playground%2FRedirectUrl&response_type=code&state=JBAJE
 
-//Exchange code for token
-$code = "someCode";
+//Redirect User to the $authorizationCodeURL, and a code will be sent to your redirect_uri as query paramter;
+$code = $_GET['code'];
 $request = $oauth2Helper->createRequestToExchange($code);
 $response = $client->send($request);
+if($response->failed()){
+  $code = $response->getStatusCode();
+  $errorMessage = $response->getBody();
+  echo "code is $code \n";
+  echo "body is $errorMessage \n";
+}else{
+  //Get the keys
+  $array = json_decode($response->getBody(), true);
+  $refreshToken = $array["refresh_token"];
+  //AB11570127472xkApQcZmbTMGfzzEOgMWl2Br5h8IEgxRULUbO
+}
 
-//Get the keys
-$array = json_decode($response->getBody(), true);
-$refreshToken = $array["refresh_token"];
 ```
 
 ## Interceptors
