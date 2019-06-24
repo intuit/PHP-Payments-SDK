@@ -223,10 +223,16 @@ CardOperations::buildFrom($cardarray);
 
 All supports `operations` are availble here: [Operations](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations)
 
-Once the object is created, developers will use the `$client` corresponding functions call to send the request. The function names of all the endpoints are derived from the doc. For example To create a card, developers will use
+Once the object is created, you will use the `$client` corresponding functions call to send the request. The function names of all the endpoints are derived from the doc. For example To create a card, you will use:
 ```php
 $client->createCard($card);
 ```
+
+If you want to provide a customer Request-Id for the request, use:
+```php
+$client->createCard($card, $requestId);
+```
+otherwise, a system generated random request ID will be provided.
 
 To check a list of available functions, refer to here: [API endpoints operations](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/PaymentClient.php)
 
@@ -236,10 +242,10 @@ To check a list of available functions, refer to here: [API endpoints operations
 Interceptors are used to intercept requests and response. It can be used to log a request/response, creating a retry mechanism if a connection timeout, or handing token expiration cases.
 
 The default interceptors provided in this SDK are:
- - ConsoleLoggerInterceptor: 
-     Similar to log4j, logging the request/response to a log file.
- - LoggingInterceptor: 
-     log the complete request and response sent/received each time. Hide the OAuth 2.0 token. The ConsoleLoggerInterceptor     will log everything to one error log, however, loggingInterceptor will record each request in a file, and each response in a file.
+ - StackTraceLoggerInterceptor: 
+     Similar to log4j, logging the stackTrace to a log file.
+ - RequestResponseLoggerInterceptor: 
+     log the complete request and response sent/received each time. Hide the OAuth 2.0 token. The StackTraceLoggerInterceptor     will log everything to one error log, however, RequestResponseLoggerInterceptor will record each request in a file, and each response in a file.
  - ExceptionOnErrorInterceptor: 
      throw an exception if the request failed. 
 
@@ -263,12 +269,12 @@ $client->removeInterceptor($name);
 Example:
 To enable file storage for each acutal request and response sent by the SDK:
 ```php
-$client->addInterceptor("requestresponselogger", new LoggingInterceptor("/your/directory/to/store/files", 'America/Los_Angeles'));
+$client->addInterceptor("requestresponselogger", new RequestResponseLoggerInterceptor("/your/directory/to/store/files", 'America/Los_Angeles'));
 ```
 
 To enable logging each transaction sent by the SDK:
 ```php
-$client->addInterceptor("tracelogger", new ConsoleLoggerInterceptor("/your/file/to/log/the/transaction", 'America/Los_Angeles'));
+$client->addInterceptor("tracelogger", new StackTraceLoggerInterceptor("/your/file/to/log/the/transaction", 'America/Los_Angeles'));
 ```
 
 
