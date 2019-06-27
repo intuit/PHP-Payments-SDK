@@ -4,13 +4,13 @@ QuickBooks Payments PHP SDK
 ![Build status](https://travis-ci.com/intuit/PHP-Payments-SDK.svg?branch=master)
 ![Latest Stable Version](https://poser.pugx.org/quickbooks/payments-sdk/v/stable)
 
-This SDK is designed to facilitate developers using QuickBooks Online Payments API. It provides a set of methods that make it easier to work with Intuit’s Payments API. It supports the following operations:
+This SDK is designed to facilitate developers using the QuickBooks Payments API by providing a set of methods that make it easier to work with.  It supports the following operations:
 
  - Standard OAuth 2.0 and OpenID Connect protocols
  - Interceptors for logging and error handling
- - Standard Payments API endpoints requests/response handling
+ - Standard Payments API endpoints with requests/response handling
 
-If you have not used with QuickBooks Online Payments API, please go to our docs at: https://developer.intuit.com/app/developer/qbpayments/docs/get-started
+If you have not used the QuickBooks Payments API before, please go to our docs at: https://developer.intuit.com/app/developer/qbpayments/docs/get-started
 
 ## Requirements
 
@@ -20,13 +20,13 @@ If you have not used with QuickBooks Online Payments API, please go to our docs 
 
 ## Composer
 
-You can install the bindings via [Composer](http://getcomposer.org/). Run the following command:
+You can install the package via [Composer](http://getcomposer.org/). Run the following command:
 
 ```php
 composer require quickbooks/payments-sdk
 ```
 
-To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
+To use the package, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
 
 ```php
 require "vendor/autoload.php";
@@ -34,7 +34,7 @@ require "vendor/autoload.php";
 
 ## Manual Installation
 
-If you do not wish to use Composer, you can download the [latest release](https://github.com/intuit/PHP-Payments-SDK/releases). Then, to use the bindings, include the `init.php` file.
+If you do not wish to use Composer, you can download the [latest release](https://github.com/intuit/PHP-Payments-SDK/releases). Then, to use the package, include the `init.php` file.
 
 ```php
 require_once('/path/to/init.php');
@@ -42,7 +42,7 @@ require_once('/path/to/init.php');
 
 ## Dependencies
 
-The bindings require the following extensions in order to work properly:
+The following extensions are required in order to work properly:
 
 - [`curl`](https://secure.php.net/manual/en/book.curl.php), although you can use your own non-cURL client if you prefer
 - [`json`](https://secure.php.net/manual/en/book.json.php)
@@ -53,7 +53,7 @@ If you use Composer, these dependencies should be handled automatically. If you 
 
 ## Getting Started
 
-To begin using the Payments SDK, the first step will be creating a PaymentClient with the two minimum propertis, `access_token` and `environment`. The `access_token` is the OAuth 2.0 token to access the API, the `environment` is defining the base url for the API endpoint, either sandbox or production. If you don't provide these two properties, `PaymentClient` can still be created, however, it won't be able to make any Payments API call.
+To begin using the Payments SDK, the first step is to create the PaymentClient.  The minimum required properties are `access_token` and `environment`. The `access_token` is the OAuth 2.0 token to access the API, the `environment` is defining the base url for the API endpoint. This can be either `sandbox` or `production`. If you do not provide these two properties, the `PaymentClient` will still be created, however, it will not be able to make any Payments API calls.
 
 ```php
 $client = new PaymentClient([
@@ -157,25 +157,25 @@ class QuickBooksOnline\Payments\Modules\Charge#11 (19) {
 
 Each casted object will have the same property names as stated in our API reference: https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/charges page,
 
-If the request is failed due to token expired, server outrage, or invalid request body, use `$response->failed()` method to check if the request failed. Check with our [Response Interface](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) for a list of supported operations to diagnose a failed request. 
+A call could fail for reasons such as an expired token, server outrage, or invalid request body.  You can check this by using `$response->failed()`. Check with our [Response Interface](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) for a list of supported operations to diagnose a failed request. 
 
 ## OAuth support
 
-Developers can use this library to handle OAuth 2.0 protocol. It supports:
-- Generating Authorization URL             
+Developers can use this library to handle the OAuth 2.0 protocol. It supports:
+- Generating the Authorization URL             
 `generateAuthCodeURL(string $scope, string $userDefinedState = "state") : string`
-- Getting OAuth2 Bearer Token              
+- Getting the OAuth 2.0 Bearer Token              
 `createRequestToExchange(string $code) : RequestInterface`  
 - Getting User Info                        
 `createRequestForUserInfo(string $accessToken) : RequestInterface`
-- Refreshing OAuth2 Token                  
+- Refreshing the OAuth 2.0 Token                 
 `createRequestToRefresh(string $refreshToken) : RequestInterface`
-- Revoking OAuth2 Token                    
+- Revoking the OAuth 2.0 Token                    
 `createRequestToRevoke(string $token)`
-- Migrating tokens from OAuth1.0 to OAuth2 
+- Migrating tokens from OAuth 1.0 to OAuth 2.0 
 `createRequestToMigrateToken(string $consumerKey, string $consumerSecret, string $oauth1AccessToken, string $oauth1TokenSecret, string $scopes) : RequestInterface`
 
-In order to use OAuth 2, developers will need to create two objects
+In order to use OAuth 2.0, developers will need to create two objects
  - OAuth2Authenticator : used to create OAuth 2.0 related request
  - PaymentClient: used to send OAuth 2.0 related request
  
@@ -223,47 +223,48 @@ if($response->failed()){
 
 ## Operations
 
-The PHP Payments SDK supports all six Payments endpoints: `BankAccounts`, `Cards`, `Charges`, `EChecks`, `Tokens`, `Transactions` that mentioned in the docs: [API Reference](https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts#create-a-bank-account-from-a-token).
+The PHP Payments SDK supports all six Payments endpoints: `BankAccounts`, `Cards`, `Charges`, `EChecks`, `Tokens`, `Transactions`.  These can be found in our [QuickBooks Payments API Explorer](https://developer.intuit.com/app/developer/qbpayments/docs/api/resources/all-entities/bankaccounts).
 
-To construct the body for each API endpoint, developers will need to first construct the body of the request in array format, then use the `Operations`'s `buildFrom` method to convert the array to object.
+To construct the body for each API endpoint, developers will need to first construct the body of the request in array format, then use the `Operations`'s `buildFrom` method to convert the array to an object.
 
-For example, to convert an array representation of card to a $card object, use:
+For example, to convert an array representation of a card to a $card object, use:
 ```php
 CardOperations::buildFrom($cardarray);
 ```
 
-All supports `operations` are availble here: [Operations](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations)
+All supported `operations` are availble here: [Operations](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations)
 
-Once the object is created, you will use the `$client` corresponding functions call to send the request. The function names of all the endpoints are derived from the doc. For example To create a card, you will use:
+Once the object is created, you can use it to send the request. The function names of all the endpoints are derived from the [API reference](https://github.com/intuit/PHP-Payments-SDK/tree/master/src/Operations). For example, to create a card, you should use:
 ```php
 $client->createCard($card);
 ```
 
-If you want to provide a customer Request-Id for the request, use:
+If you want to provide a custom Request-Id for the request, use:
 ```php
 $client->createCard($card, $requestId);
 ```
 otherwise, a system generated random request ID will be provided.
 
-To check a list of available functions, refer to here: [API endpoints operations](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/PaymentClient.php)
+To check a list of available functions, refer here: [API endpoints operations](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/PaymentClient.php)
 
 
 ## Interceptors
 
-Interceptors are used to intercept requests and response. It can be used to log a request/response, creating a retry mechanism if a connection timeout, or handing token expiration cases.
+Interceptors are used to intercept requests and responses. It can be used to log a request or response. This can be used as a retry mechanism for issues such as connection timeouts or token expirations.
 
 The default interceptors provided in this SDK are:
- - StackTraceLoggerInterceptor: 
-     Similar to log4j, logging the stackTrace to a log file.
- - RequestResponseLoggerInterceptor: 
-     log the complete request and response sent/received each time. Hide the OAuth 2.0 token. The StackTraceLoggerInterceptor     will log everything to one error log, however, RequestResponseLoggerInterceptor will record each request in a file, and each response in a file.
- - ExceptionOnErrorInterceptor: 
-     throw an exception if the request failed. 
-
-Based on the need, you can define your own interceptors to intercept request and response by inheriting the  `InterceptorInterface`:
+ - **StackTraceLoggerInterceptor**: 
+     Similar to log4j, it will log the stack trace to a log file. The StackTraceLoggerIntercepto will log everything to one error log.
+ - **RequestResponseLoggerInterceptor**: 
+     It will log the complete request and response that was sent and received each time. It will hide the OAuth 2.0 token. The RequestResponseLoggerInterceptor will record each request in a file, and each response in a file.
+ - **ExceptionOnErrorInterceptor**: 
+     It will throw an exception if the request failed. 
+     
+  
+Based on the need, you can define your own interceptors to intercept requests and responses by inheriting the  `InterceptorInterface`:
 - To change the request sent to the Payments API, define your `before(RequestInterface &$request, PaymentClient $client)` method.
 - To change the response received, define your `after(ResponseInterface &$response, PaymentClient $client)` method. 
-- To intercept the request and response, but don't alter them, define your `intercept(RequestInterface $request, ResponseInterface $response, PaymentClient $client)` method.
+- To intercept the unaltered request and response, define your `intercept(RequestInterface $request, ResponseInterface $response, PaymentClient $client)` method.
 
 In order to add an interceptor to the client, use:
 
@@ -283,7 +284,7 @@ To enable file storage for each acutal request and response sent by the SDK:
 $client->addInterceptor("requestresponselogger", new RequestResponseLoggerInterceptor("/your/directory/to/store/files", 'America/Los_Angeles'));
 ```
 
-To enable logging each transaction sent by the SDK:
+To enable logging of each transaction sent by the SDK:
 ```php
 $client->addInterceptor("tracelogger", new StackTraceLoggerInterceptor("/your/file/to/log/the/transaction", 'America/Los_Angeles'));
 ```
@@ -291,9 +292,9 @@ $client->addInterceptor("tracelogger", new StackTraceLoggerInterceptor("/your/fi
 
 ## Error Handling
 
-By default, each `$response` object will have a `failed()` method to determine if a request is made successful. A successful request is defined by having a status code of 200/201. Any other status code will cause a `$response->failed()` method return true. If a request failed, you can use our [supported diagnose function](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) to find out more information.
+By default, each `$response` object has a `failed()` method to determine if a request was made successfully. A successful request is defined by having a status code of 200/201. Any other status code will cause the `$response->failed()` method to return true. If a request failed, you can use our [supported diagnose function](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) to find out more information.
 
 ## Questions
 
-If you find any bugs for the SDK, or want to request for a feature, create a support ticket at https://help.developer.intuit.com/s/ or sending us a pull request. Contributions are always welcomed!
+If you find any bugs for the SDK, or want to request for a feature, create a support ticket at https://help.developer.intuit.com/s/ or send us a pull request. Contributions are always welcomed!
 
