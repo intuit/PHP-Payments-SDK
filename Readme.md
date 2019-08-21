@@ -26,6 +26,17 @@ You can install the package via [Composer](http://getcomposer.org/). Run the fol
 composer require quickbooks/payments-sdk
 ```
 
+If you encounter a problem during composer installation, try to update composer first:
+
+```php
+composer update
+```
+and see if specifying a version resolves the issue, example:
+
+```php
+composer require quickbooks/payments-sdk 1.0.2
+```
+
 To use the package, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
 
 ```php
