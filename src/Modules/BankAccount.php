@@ -18,6 +18,7 @@ class BankAccount extends Entity
     public $entityVersion;
     public $entityId;
     public $entityType;
+    public $bankName;
 
     public function __construct(array $array = array())
     {
