@@ -44,6 +44,13 @@ class PaymentClient
      */
     private $httpClient;
 
+    /**
+     * PaymentClient interceptors
+     *
+     * @variable array
+     */
+    private $interceptors;
+
 
     public function __construct(array $context = null)
     {
@@ -102,7 +109,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -116,7 +123,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -130,7 +137,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -144,7 +151,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -158,7 +165,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -172,7 +179,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -186,7 +193,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -201,7 +208,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -216,7 +223,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -231,7 +238,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -245,7 +252,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -259,7 +266,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -273,7 +280,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -287,7 +294,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -301,7 +308,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -315,7 +322,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -329,7 +336,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -344,7 +351,7 @@ class PaymentClient
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
-        $this->intercept($request, $response, $this);
+        $this->intercept($request, $response);
         OperationsConverter::updateResponseBodyToObj($response);
         return $response;
     }
@@ -470,6 +477,10 @@ class PaymentClient
         }
     }
 
+    /**
+     * @param string $name
+     * @param InterceptorInterface
+     */
     public function addInterceptor($name, $interceptor)
     {
         $theInterceptor = $this->getInterceptor($name);
