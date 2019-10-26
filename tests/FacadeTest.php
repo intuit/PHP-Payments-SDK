@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace QuickBooksOnline\Tests;
 
+use PHPUnit\Framework\TestCase;
 use QuickBooksOnline\Payments\Operations\OperationsConverter;
-
 
 final class OperationsTest extends TestCase
 {
