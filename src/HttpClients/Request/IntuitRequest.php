@@ -1,6 +1,8 @@
 <?php
 namespace QuickBooksOnline\Payments\HttpClients\Request;
 
+use \InvalidArgumentException;
+
 class IntuitRequest implements RequestInterface
 {
     private $method;
