@@ -70,7 +70,6 @@ final class ChargeTest extends TestCase
     }
 
 
-
     private function createRefundBody()
     {
         $chargeBody = ChargeOperations::buildFrom([
@@ -203,5 +202,20 @@ final class ChargeTest extends TestCase
             $refundResponse->id,
             $chargeId
          );
+    }
+
+    public function testVoidTransaction()
+    {
+        $client = $this->createInstance();
+        $chargeBody = $this->createChargeBody();
+        $chargeRequestId = rand() . "abd";
+
+        $client->charge($chargeBody, $chargeRequestId);
+
+        $voidResponse = $client->voidChargeTransaction($chargeRequestId);
+        $voidBodyResponse = $voidResponse->getBody();
+
+        $this->assertEquals($voidBodyResponse->status, 'ISSUED');
+        $this->assertEquals($voidBodyResponse->type, "VOID");
     }
 }
