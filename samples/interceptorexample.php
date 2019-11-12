@@ -1,5 +1,7 @@
 <?php
-require "vendor/autoload.php";
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+//require "vendor/autoload.php";
+include('../src/config.php');
 
 use QuickBooksOnline\Payments\PaymentClient;
 use QuickBooksOnline\Payments\Operations\ChargeOperations;

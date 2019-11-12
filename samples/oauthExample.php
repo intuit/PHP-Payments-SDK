@@ -1,6 +1,7 @@
 <?php
-require "vendor/autoload.php";
-
+//Replace the line with require "vendor/autoload.php" if you are using the Samples from outside of _Samples folder
+//require "vendor/autoload.php";
+include('../config.php');
 use QuickBooksOnline\Payments\OAuth\OAuth2Authenticator;
 use QuickBooksOnline\Payments\PaymentClient;
 
