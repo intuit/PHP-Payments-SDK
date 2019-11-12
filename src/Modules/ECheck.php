@@ -16,6 +16,7 @@ class ECheck extends Entity
     public $authCode;
     public $refundDetail;
     public $type;
+    public $bankAccountOnFile;
 
     public function __construct(array $array = array())
     {
