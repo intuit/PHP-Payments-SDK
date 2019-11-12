@@ -11,6 +11,7 @@ use QuickBooksOnline\Payments\Interceptors\{StackTraceLoggerInterceptor, Request
 
 final class LoggingInterceptorTest extends TestCase
 {
+    private $testDir = "/tmp/logTest";
     private function createInstance()
     {
         return TestClientCreator::createInstance();
@@ -33,15 +34,35 @@ final class LoggingInterceptorTest extends TestCase
         return $cardBody;
     }
 
+    protected function setUp(): void
+    {
+        $this->testDir = $this->testDir . '_' . str_pad(strval(mt_rand(1,99999999)), 8, '0', STR_PAD_LEFT);
+        if (!file_exists($this->testDir))
+        {
+            mkdir($this->testDir, 0755, TRUE);
+        }
+    }
+    protected function tearDown(): void
+    {
+        if (file_exists($this->testDir)) {
+            foreach (glob($this->testDir . '/*') as $file) {
+                if (!is_dir($file)) {
+		    unlink($file);
+		}
+            }
+            rmdir($this->testDir);
+        }
+    }
+
     public function testLoggingToDiskWorksOrNot() : void
     {
         $client = $this->createInstance();
-        $client->addInterceptor("FileInterceptor", new RequestResponseLoggerInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/", 'America/Los_Angeles'));
-        $client->addInterceptor("LoggerInterceptor", new StackTraceLoggerInterceptor("/Users/hlu2/Desktop/newFolderForLog/logTest/errorLog.txt"));
+        $client->addInterceptor("FileInterceptor", new RequestResponseLoggerInterceptor($this->testDir . '/', 'America/Los_Angeles'));
+        $client->addInterceptor("LoggerInterceptor", new StackTraceLoggerInterceptor($this->testDir . '/errorLog.txt'));
         $card = $this->createCardBody();
         $clientId = rand();
         $response = $client->createCard($card, $clientId, rand() . "abd");
-        $exist = file_exists("/Users/hlu2/Desktop/newFolderForLog/logTest/errorLog.txt");
+        $exist = file_exists($this->testDir . '/errorLog.txt');
         $this->assertEquals(
             $exist, true
         );

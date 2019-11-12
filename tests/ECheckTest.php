@@ -25,7 +25,7 @@ final class ECheckTest extends TestCase
        "accountNumber"=> "1100000033345678"
      ],
      "description"=> "Check Auth test call",
-     "checkNumber"=> "12345678",
+     "checkNumber"=> str_pad(strval(mt_rand(1,99999999)), 8, '0', STR_PAD_LEFT),
      "paymentMode"=> "WEB",
      "amount"=> "5.55",
      "context"=> [
