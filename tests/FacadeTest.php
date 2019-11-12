@@ -6,7 +6,7 @@ namespace QuickBooksOnline\Tests;
 use PHPUnit\Framework\TestCase;
 use QuickBooksOnline\Payments\Operations\OperationsConverter;
 
-final class OperationsTest extends TestCase
+final class FacadeTest extends TestCase
 {
     public function testJsonDecode(): void
     {

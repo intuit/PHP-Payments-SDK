@@ -24,7 +24,7 @@ final class GuzzleClientTest extends TestCase
   public function testExchangeCodeRequestSentByCurlClient(): void
   {
       $oauth2Helper = $this->createClient();
-      $code = "L011557358660z3axu8cgM7YHVyRGAaU63Ap0hgtEzfdkgwu5d";
+      $code = "AB11582326772xz6uxiWcSg4OxkVr6uzEiwibGVBKm32MuiEle";
       $request = $oauth2Helper->createRequestToExchange($code);
       $client = new GuzzleClient();
       $response = $client->send($request);
@@ -37,7 +37,7 @@ final class GuzzleClientTest extends TestCase
   public function testSuccessRefreshTokenSentByGuzzleClient(): void
   {
     $oauth2Helper = $this->createClient();
-    $token = "Q0115689456794aGNZ0Im22QhmA7im7f9Pi4OTperVKSWxEDT7";
+    $token = "AB11582326772xz6uxiWcSg4OxkVr6uzEiwibGVBKm32MuiEle";
     $request = $oauth2Helper->createRequestToRefresh($token);
     $client = new GuzzleClient();
     $response = $client->send($request);
