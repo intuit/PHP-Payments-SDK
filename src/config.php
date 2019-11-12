@@ -3,7 +3,7 @@
 /**
  * This is a file that required for using the files located in _Sample folders.
  * It is a SQL autoloader that performs the exact same function as composer "require "vendor/autoload.php";"
- * If you are using the _sample file. Remove the required include('../config.php'); line and add "require "vendor/autoload.php"" instead.
+ * If you are using the _sample file. Remove the required include('../src/config.php'); line and add "require "vendor/autoload.php"" instead.
 
  *
  * @author Hao
