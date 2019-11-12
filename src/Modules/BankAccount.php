@@ -13,6 +13,7 @@ class BankAccount extends Entity
     public $accountType;
     public $phone;
     public $country;
+    public $bankName;
     public $bankCode;
     public $default;
     public $entityVersion;

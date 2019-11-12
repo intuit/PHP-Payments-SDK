@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use QuickBooksOnline\Payments\Operations\BankAccountOperations;
 use QuickBooksOnline\Payments\PaymentClient;
 
-final class CardTest extends TestCase
+final class BankAccountTest extends TestCase
 {
   private function createInstance()
   {

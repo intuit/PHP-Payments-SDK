@@ -16,6 +16,8 @@
  *******************************************************************************/
 namespace QuickBooksOnline\Payments\OAuth;
 
+use \InvalidArgumentException;
+
 class OAuth1Encrypter
 {
 

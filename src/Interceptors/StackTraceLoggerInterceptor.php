@@ -18,6 +18,7 @@ class StackTraceLoggerInterceptor implements InterceptorInterface, LoggerInterfa
     const ERROR      = 'ERROR';
     const CRITICAL   = 'CRITICAL';
     const EMERGENCY  = 'EMERGENCY';
+    const ALERT      = 'ALERT';
 
     private $logFile;
     private $timezone;

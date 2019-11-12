@@ -6,6 +6,8 @@ use QuickBooksOnline\Payments\HttpClients\Request\RequestFactory;
 use QuickBooksOnline\Payments\HttpClients\Request\IntuitRequest;
 use QuickBooksOnline\Payments\HttpClients\Request\RequestType;
 
+use \InvalidArgumentException;
+
 class OAuth2Authenticator
 {
     private $client_id;
