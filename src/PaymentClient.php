@@ -100,6 +100,21 @@ class PaymentClient
         return $response;
     }
 
+    public function voidChargeTransaction(string $chargeRequestId, string $requestId = "") : ResponseInterface
+    {
+        if (empty($requestId)) {
+            $requestId = ClientContext::generateRequestID();
+        }
+        $request = ChargeOperations::voidTransaction($chargeRequestId, $requestId, $this->getContext());
+
+        $this->httpClient->send($request);
+        $this->before($request, $this);
+        $response = $this->httpClient->send($request);
+        $this->after($response, $this);
+        OperationsConverter::updateResponseBodyToObj($response);
+        return $response;
+    }
+
     public function retrieveCharge(string $chargeId, string $requestId = "") : ResponseInterface
     {
         if (empty($requestId)) {
@@ -277,6 +292,7 @@ class PaymentClient
             $requestId = ClientContext::generateRequestID();
         }
         $request = ECheckOperations::retrieveRefund($echeckId, $refundId, $requestId, $this->getContext());
+
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);

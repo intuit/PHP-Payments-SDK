@@ -76,4 +76,16 @@ class ChargeOperations
                 ->setHeader($context->getStandardHeaderWithRequestID($requestId));
         return $request;
     }
+
+    /**
+     * Void a transaction
+     */
+    public static function voidTransaction(string $chargeRequestId, $requestId, $context)
+    {
+        $request = RequestFactory::createStandardIntuitRequest(RequestType::CHARGE);
+        $request->setMethod(RequestInterface::POST)
+            ->setUrl($context->getBaseUrl() . EndpointUrls::VOID_URL . "/" . $chargeRequestId . "/void")
+            ->setHeader($context->getStandardHeaderWithRequestID($requestId));
+        return $request;
+    }
 }
