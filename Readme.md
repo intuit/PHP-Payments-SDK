@@ -14,7 +14,7 @@ If you have not used the QuickBooks Payments API before, please go to our docs a
 
 ## Requirements
 
-   1. PHP 7.1.0 and later.
+   1. PHP 7.2.0 and later.
    2. App for QuickBooks Online Payments API.
 
 
