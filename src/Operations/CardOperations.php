@@ -53,6 +53,18 @@ class CardOperations
     }
 
     /**
+     * Get a card associated with a Customer
+     */
+    public static function getCard($customerID, string $cardId, string $requestId, $context): RequestInterface
+    {
+        $request = RequestFactory::createStandardIntuitRequest(RequestType::CARD);
+        $request->setMethod(RequestInterface::GET)
+            ->setUrl($context->getBaseUrl() . EndpointUrls::CUSTOMER_URL . "/" . $customerID . "/cards" . "/" . $cardId)
+            ->setHeader($context->getStandardHeaderWithRequestID($requestId));
+        return $request;
+    }
+
+    /**
      * Create a Card from Token
      */
     public static function createCardFromToken($customerID, string $tokenValue, $requestId, $context): RequestInterface

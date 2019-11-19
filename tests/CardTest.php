@@ -115,6 +115,29 @@ final class CardTest extends TestCase
         $client->deleteCard($customerId, $id2);
     }
 
+    public function testFindACustomerCardOnSandbox(): void
+    {
+        $client = $this->createInstance();
+        $card = $this->createCardBody();
+        $customerId = rand();
+
+        /** Add a test card */
+        $response = $client->createCard($card, $customerId);
+        $id1 = $response->getBody()->id;
+        $secureCardNumber1 = $response->getBody()->number;
+
+        /** Retrieve the test card */
+        $response2 = $client->getCard($customerId, $id1);
+        $id2 = $response2->getBody()->id;
+        $secureCardNumber2 = $response->getBody()->number;
+
+        /** Make sure the retrieved secure card matches the originally added card */
+        $this->assertEquals($id1, $id2);
+        $this->assertEquals($secureCardNumber1, $secureCardNumber2);
+
+        $client->deleteCard($customerId, $id1);
+    }
+
     public function testCreateCardToken(): void
     {
         $client = $this->createInstance();
