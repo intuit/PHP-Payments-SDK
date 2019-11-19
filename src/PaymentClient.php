@@ -185,6 +185,20 @@ class PaymentClient
         return $response;
     }
 
+    public function getCard($customerID, string $cardId, string $requestId = ""): ResponseInterface
+    {
+        if (empty($requestId)) {
+            $requestId = ClientContext::generateRequestID();
+        }
+        $request = CardOperations::getCard($customerID, $cardId, $requestId, $this->getContext());
+        $this->before($request, $this);
+        $response = $this->httpClient->send($request);
+        $this->after($response, $this);
+        $this->intercept($request, $response);
+        OperationsConverter::updateResponseBodyToObj($response);
+        return $response;
+    }
+
     public function deleteCard($customerID, string $cardId, string $requestId = ""): ResponseInterface
     {
         if (empty($requestId)) {
