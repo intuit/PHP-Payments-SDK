@@ -8,3 +8,4 @@ before_script:
 script:
 - ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/BankAccountTest.php
 - ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/CardTest.php
+- ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ChargeTest.php 
