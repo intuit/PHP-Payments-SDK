@@ -34,7 +34,7 @@ composer update
 and see if specifying a version resolves the issue, example:
 
 ```php
-composer require quickbooks/payments-sdk 1.0.2
+composer require quickbooks/payments-sdk 1.0.5
 ```
 
 To use the package, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
