@@ -115,6 +115,7 @@ class HttpCurlClient implements HttpClientInterface
         } else {
             $this->baseCurl->setupOption(CURLOPT_CUSTOMREQUEST, $request->getMethod());
         }
+        $this->baseCurl->setupOption(CURLOPT_SSL_VERIFYPEER, true);
         if ($this->isVerifySSL) {
             $this->setSSLConfig();
         } else {
@@ -145,19 +146,13 @@ class HttpCurlClient implements HttpClientInterface
 
     private function setSSLConfig()
     {
-        $tlsVersion = $this->baseCurl->versionOfTLS();
-        $versions = ['TLS 1.2', 'TLS 1.3'];
-        if (!in_array($tlsVersion, $versions)) {
-            throw new \RuntimeException("Error. Checking TLS 1.2/1.3 version failed. Please make sure your PHP cURL supports TSL 1.2/1.3");
-        }
-        $this->baseCurl->setupOption(CURLOPT_SSL_VERIFYPEER, true);
         $this->baseCurl->setupOption(CURLOPT_SSL_VERIFYHOST, 2);
         $this->baseCurl->setupOption(CURLOPT_CAINFO, CoreConstants::getCertPath());
     }
 
     private function acceptAll()
     {
-        $this->baseCurl->setupOption(CURLOPT_SSL_VERIFYPEER, false);
+        $this->baseCurl->setupOption(CURLOPT_SSL_VERIFYHOST, 0);
     }
 
     private function updateCurlSettings()

@@ -3,25 +3,9 @@ namespace QuickBooksOnline\Payments\Modules;
 
 use QuickBooksOnline\Payments\Operations\OperationsConverter;
 
-class Card extends Entity
+class ZeroDollarVerification
 {
-    public $updated;
-    public $name;
-    public $number;
-    public $address;
-    public $commercialCardCode;
-    public $cvcVerification;
-    public $cardType;
-    public $expMonth;
-    public $expYear;
-    public $default;
-    public $isBusiness;
-    public $isLevel3Eligible;
-    public $cvc;
-    public $entityVersion;
-    public $entityId;
-    public $entityType;
-    public $zeroDollarVerification;
+    public $status;
 
     public function __construct(array $array = array())
     {

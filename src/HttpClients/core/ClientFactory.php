@@ -8,7 +8,7 @@ class ClientFactory
     public static function buildCurlClient(
         int $connectionTimeOut = 10,
         int $requestTimeOut = 100,
-        bool $isVerify = true
+        bool $isVerify = false
     ) {
         $client =  new HttpCurlClient();
         $client->setVerifySSL($isVerify);
@@ -19,7 +19,7 @@ class ClientFactory
     public static function buildGuzzleClient(
         int $connectionTimeOut = 10,
         int $requestTimeOut = 100,
-        bool $isVerify = true
+        bool $isVerify = false
     ) {
         $client =  new GuzzleClient();
         $client->setVerifySSL($isVerify);
