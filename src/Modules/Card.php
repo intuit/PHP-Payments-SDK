@@ -22,6 +22,7 @@ class Card extends Entity
     public $entityId;
     public $entityType;
     public $zeroDollarVerification;
+    public $status;
 
     public function __construct(array $array = array())
     {
