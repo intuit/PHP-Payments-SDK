@@ -10,6 +10,12 @@ class Context
     public $recurring;
     public $isEcommerce;
     public $tax;
+    public $reconBatchID;
+    public $paymentGroupingCode;
+    public $txnAuthorizationStamp;
+    public $paymentStatus;
+    public $merchantAccountNumber;
+    public $clientTransID;
 
     public function __construct(array $array = array())
     {
