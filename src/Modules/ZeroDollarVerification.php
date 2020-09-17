@@ -6,6 +6,8 @@ use QuickBooksOnline\Payments\Operations\OperationsConverter;
 class ZeroDollarVerification
 {
     public $status;
+    public $type;
+    public $transactionId;
 
     public function __construct(array $array = array())
     {
