@@ -31,8 +31,6 @@ class ECheck extends Entity
                         $this->{$name} = $value;
                     }
                 }
-            } else {
-                throw new \RuntimeException("Property name: [" . $name . "] is not a valid field for: [" . get_class($this) . "]. Please check your keys.");
             }
         }
     }

@@ -24,7 +24,7 @@ $array = [
         "country" => "US",
         "postalCode" => "94086"
       ],
-      "expMonth" => "02",
+      "expMonth" => "12",
       "expYear" => "2020",
       "cvc" => "123"
   ],

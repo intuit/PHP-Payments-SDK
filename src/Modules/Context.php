@@ -10,6 +10,12 @@ class Context
     public $recurring;
     public $isEcommerce;
     public $tax;
+    public $reconBatchID;
+    public $paymentGroupingCode;
+    public $txnAuthorizationStamp;
+    public $paymentStatus;
+    public $merchantAccountNumber;
+    public $clientTransID;
 
     public function __construct(array $array = array())
     {
@@ -24,8 +30,6 @@ class Context
                         $this->{$name} = $value;
                     }
                 }
-            } else {
-                throw new \RuntimeException("Property name: [" . $name . "] is not a valid field for: [" . get_class($this) . "]. Please check your keys.");
             }
         }
     }
