@@ -59,7 +59,10 @@ class PaymentClient
         }else{
             $this->context = new ClientContext();
         }
-        $this->httpClient = ClientFactory::buildCurlClient();
+        $this->httpClient = ClientFactory::buildCurlClient(
+            $context['connection_time_out'] ?? 10,
+            $context['request_time_out'] ?? 100
+        );
 
         $this->interceptors = array();
     }
