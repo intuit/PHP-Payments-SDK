@@ -1,3 +1,4 @@
+[![Rate your SDK](views/RateSDK.png)][ss1][![Yes](views/Thumbup.png)][ss2][![No](views/Thumbdown.png)][ss3]
 
 QuickBooks Payments PHP SDK
 ==========================
@@ -304,6 +305,10 @@ $client->addInterceptor("tracelogger", new StackTraceLoggerInterceptor("/your/fi
 ## Error Handling
 
 By default, each `$response` object has a `failed()` method to determine if a request was made successfully. A successful request is defined by having a status code of 200/201. Any other status code will cause the `$response->failed()` method to return true. If a request failed, you can use our [supported diagnose function](https://github.com/intuit/PHP-Payments-SDK/blob/master/src/HttpClients/Response/ResponseInterface.php) to find out more information.
+
+[ss1]: #
+[ss2]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=Yes&checkpoint=PHP-Payments-SDK&pageUrl=github
+[ss3]: https://customersurveys.intuit.com/jfe/form/SV_9LWgJBcyy3NAwHc?check=No&checkpoint=PHP-Payments-SDK&pageUrl=github
 
 ## Questions
 
