@@ -92,7 +92,6 @@ class PaymentClient
         }
         $request = ChargeOperations::createChargeRequest($charge, $requestId, $this->getContext());
 
-        $response = $this->httpClient->send($request);
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
@@ -107,7 +106,6 @@ class PaymentClient
         }
         $request = ChargeOperations::voidTransaction($chargeRequestId, $requestId, $this->getContext());
 
-        $this->httpClient->send($request);
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
