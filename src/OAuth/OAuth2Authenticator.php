@@ -268,7 +268,7 @@ class OAuth2Authenticator
           'response_type' => 'code',
           'state' => $this->getState()
       );
-        return http_build_query($parameters, null, '&', PHP_QUERY_RFC3986);
+        return http_build_query($parameters, '', '&', PHP_QUERY_RFC3986);
     }
 
     public function setState($state)

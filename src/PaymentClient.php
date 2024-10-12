@@ -59,7 +59,11 @@ class PaymentClient
         }else{
             $this->context = new ClientContext();
         }
-        $this->httpClient = ClientFactory::buildCurlClient();
+        $this->httpClient = ClientFactory::buildCurlClient(
+            isset($context['connection_time_out']) ? $context['connection_time_out'] : 10,
+            isset($context['request_time_out']) ? $context['request_time_out'] : 100,
+            isset($context['is_verify']) ? $context['is_verify'] : false
+        );
 
         $this->interceptors = array();
     }
@@ -92,7 +96,6 @@ class PaymentClient
         }
         $request = ChargeOperations::createChargeRequest($charge, $requestId, $this->getContext());
 
-        $response = $this->httpClient->send($request);
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
@@ -107,7 +110,6 @@ class PaymentClient
         }
         $request = ChargeOperations::voidTransaction($chargeRequestId, $requestId, $this->getContext());
 
-        $this->httpClient->send($request);
         $this->before($request, $this);
         $response = $this->httpClient->send($request);
         $this->after($response, $this);
